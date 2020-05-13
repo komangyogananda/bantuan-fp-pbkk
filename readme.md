@@ -1,0 +1,2 @@
+Komang Yogananda Mahaputra Wisna
+05111740000114
