@@ -13,6 +13,7 @@ composer.phar
 # composer.lock
 
 ### Phalcon ###
+/compiled/
 /cache/
 /config/development/
 

@@ -17,6 +17,9 @@ try {
     $debug = new Debug();
     $debug->listen();
     $di = new FactoryDefault();
+    include __DIR__.'/../vendor/autoload.php';
+    $dotenv = \Dotenv\Dotenv::createMutable(__DIR__.'/../');
+    $dotenv->load();
 
     /**
      * Read services

@@ -47,10 +47,9 @@ $di->setShared('view', function () {
             $volt = new VoltEngine($view, $this);
 
             $volt->setOptions([
-                'path' => $config->application->cacheDir,
                 'separator' => '_',
-                'compleAlways' => true,
-                'compiledPath' => $config->application->compileDir
+                'always' => true,
+                'path' => $config->application->compileDir
             ]);
 
             return $volt;
@@ -129,4 +128,8 @@ $di->setShared('logger', function () {
     'mode' => 'w+'
   ));
   return $logger;
+});
+
+$di->setShared('user_manager', function () {
+  return new UserManager();
 });

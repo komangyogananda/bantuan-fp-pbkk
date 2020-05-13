@@ -62,37 +62,7 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Bantuan:</h6>
             <a class="collapse-item" href="bantuan/tambah">Tambah Bantuan</a>
-            <a class="collapse-item" href="bantuan/">Rekap Bantuan</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUser" aria-expanded="true" aria-controls="collapseUser">
-          <i class="fas fa-users"></i>
-          <span>User</span>
-        </a>
-        <div id="collapseUser" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">User:</h6>
-            <a class="collapse-item" href="user/tambah">Buat User</a>
-            <a class="collapse-item" href="user/">Daftar User</a>
-          </div>
-        </div>
-      </li>
-
-      <!-- Nav Item - Pages Collapse Menu -->
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseKategori" aria-expanded="true" aria-controls="collapseKategori">
-          <i class="fas fa-box-open"></i>
-          <span>Kategori Barang</span>
-        </a>
-        <div id="collapseKategori" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-            <h6 class="collapse-header">Kategori Barang:</h6>
-            <a class="collapse-item" href="category/tambah">Buat Kategori Baru</a>
-            <a class="collapse-item" href="category">Daftar Kategori</a>
+            <a class="collapse-item" href="bantuan/">Bantuan Saya</a>
           </div>
         </div>
       </li>
@@ -117,7 +87,26 @@
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
-          <div>Komang Yogananda Mahaputra Wisna</div>
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item dropdown no-arrow">
+              <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="mr-2 d-none d-lg-inline">{{ user.getNama() }}</span>
+                <i class="fas fa-user"></i>
+              </a>
+
+              <!-- Dropdown - User Information -->
+              <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Profile
+                </a>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                  Logout
+                </a>
+              </div>
+            </li>
+          </ul>
 
         </nav>
         <!-- End of Topbar -->

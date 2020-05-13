@@ -1,12 +1,44 @@
 <?php
 
-namespace App\Models;
-
 class User extends BaseModel {
   private $id;
   private $nama;
   private $nik;
   private $jenis_kelamin;
+  private $password;
+  private $username;
+
+  /**
+   * @return mixed
+   */
+  public function getPassword()
+  {
+    return $this->password;
+  }
+
+  /**
+   * @param mixed $password
+   */
+  public function setPassword($password)
+  {
+    $this->password = $password;
+  }
+
+  /**
+   * @return mixed
+   */
+  public function getUsername()
+  {
+    return $this->username;
+  }
+
+  /**
+   * @param mixed $username
+   */
+  public function setUsername($username)
+  {
+    $this->username = $username;
+  }
 
   /**
    * @return mixed

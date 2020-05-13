@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Managers;
-use App\Models\User;
-
 class UserManager extends BaseManager {
   public function find($parameters = null){
-    return User::find($parameters);
+    return User::findFirst($parameters);
   }
 
   public function create($data){
     $user = new User();
     $user->setNama($data['nama']);
     $user->setNik($data['nik']);
-    $user->setJenisKelamin($data['jenis_kelamin']);
+    $user->setJenisKelamin($data['jenisKelamin']);
+    $user->setPassword($data['password']);
+    $user->setUsername($data['username']);
 
     if (false === $user->create()){
       foreach ($user->getMessages() as $message) {
