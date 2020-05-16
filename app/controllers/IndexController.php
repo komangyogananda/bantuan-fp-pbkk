@@ -5,13 +5,10 @@ class IndexController extends ControllerBase
 {
 
     public function indexAction(){
-      $session = $this->di->getShared('session');
-      $user = $session->get('user');
-      if ($user){
-        $this->view->user = $user;
-      }else{
-        $this->response->redirect("user/login");
-      }
+      $this->dispatcher->forward([
+        "controller" => "bantuan",
+        "action" => "list"
+      ]);
     }
 
 }

@@ -133,3 +133,15 @@ $di->setShared('logger', function () {
 $di->setShared('user_manager', function () {
   return new UserManager();
 });
+
+$di->setShared('category_manager', function (){
+  return new CategoryManager();
+});
+
+$di->setShared('bantuan_manager', function (){
+  return new BantuanManager();
+});
+
+$di->setShared('item_manager', function (){
+  return new ItemManager();
+});

@@ -19,6 +19,8 @@
   <!-- <link href="css/sb-admin-2.min.css" rel="stylesheet"> -->
   {{ stylesheetLink('vendor/fontawesome-free/css/all.min.css')}}
   {{ stylesheetLink('css/sb-admin-2.min.css')}}
+  {% block style %}
+  {% endblock %}
 
 </head>
 
@@ -41,7 +43,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="/">
           <span>Home</span></a>
       </li>
 
@@ -61,8 +63,8 @@
         <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Bantuan:</h6>
-            <a class="collapse-item" href="bantuan/tambah">Tambah Bantuan</a>
-            <a class="collapse-item" href="bantuan/">Bantuan Saya</a>
+            <a class="collapse-item" href="/bantuan/tambah">Tambah Bantuan</a>
+            <a class="collapse-item" href="/bantuan/saya">Bantuan Saya</a>
           </div>
         </div>
       </li>
@@ -90,7 +92,9 @@
           <ul class="navbar-nav ml-auto">
             <li class="nav-item dropdown no-arrow">
               <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline">{{ user.getNama() }}</span>
+                {% if user is not empty %}
+                   <span class="mr-2 d-none d-lg-inline">{{ user.getNama() }}</span>
+                {% endif %}
                 <i class="fas fa-user"></i>
               </a>
 
@@ -150,7 +154,8 @@
   {{ javascriptInclude('vendor/bootstrap/js/bootstrap.bundle.min.js') }}
   {{ javascriptInclude('vendor/jquery-easing/jquery.easing.min.js') }}
   {{ javascriptInclude('js/sb-admin-2.min.js') }}
-
+  {% block javascript %}
+  {% endblock %}
 </body>
 
 </html>

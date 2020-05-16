@@ -8,6 +8,18 @@ class User extends BaseModel {
   private $password;
   private $username;
 
+  public function initialize(){
+    $this->hasMany(
+      "id",
+      Bantuan::class,
+      'user_id',
+      [
+        'reusable'=> true,
+        'alias' => "bantuan",
+      ]
+    );
+  }
+
   /**
    * @return mixed
    */

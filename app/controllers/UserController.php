@@ -26,7 +26,6 @@ class UserController extends ControllerBase
         }
       } catch (\Exception $e){
         echo $e->getMessage();
-        die();
       }
     }
   }
