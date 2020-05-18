@@ -94,6 +94,7 @@
         }
       },
       searching: false,
+      lengthMenu: [5, 10],
       columns: [
         {"data": "itemsLength"},
         {"data": "createdAt"},

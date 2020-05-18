@@ -2,7 +2,7 @@
 
 class UserManager extends BaseManager {
   public function find($parameters = null){
-    return User::findFirst($parameters);
+    return User::findFirstByUsername($parameters);
   }
 
   public function create($data){

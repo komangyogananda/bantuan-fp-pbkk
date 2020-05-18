@@ -56,7 +56,7 @@
                     <hr>
                   </form>
                   <div class="text-center">
-                    <a class="small" href="register.html">Buat akun!</a>
+                    <a class="small" href="/user/register">Buat akun!</a>
                   </div>
                 </div>
               </div>

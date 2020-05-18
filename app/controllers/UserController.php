@@ -8,14 +8,13 @@ class UserController extends ControllerBase
 
   public function loginAction(){
     if ($this->request->isPost()){
+      $this->view->disable();
       $user_manager = $this->di->getShared("user_manager");
       $security = new Security();
       $username = $this->request->getPost("username");
       $password = $this->request->getPost("password");
       try {
-        $user = $user_manager->find([
-          "username" => $username
-        ]);
+        $user = $user_manager->find($username);
         if (!$user){
           throw new Exception("User not found", 404);
         }
@@ -43,13 +42,17 @@ class UserController extends ControllerBase
           'jenisKelamin' => $this->request->getPost("jenisKelamin"),
         ];
         $user_manager->create($params);
-        $this->dispatcher->forward(["action" => "login"]);
         $this->response->redirect('user/login');
       } catch (\Exception $e){
         echo $e->getMessage();
-        die();
       }
     }
+  }
+
+  public function logoutAction(){
+    $this->view->disable();
+    $this->di->getShared('session')->remove("user");
+    $this->response->redirect('user/login');
   }
 
 }

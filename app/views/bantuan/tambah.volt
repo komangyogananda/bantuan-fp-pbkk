@@ -40,6 +40,33 @@
   </div>
 </div>
 
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" role="dialog" aria-labelledby="successModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Success</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="row justify-content-center">
+          <div class="col-6">
+            <img src={{ static_url('img/check-circle-solid.svg')}} />
+          </div>
+        </div> 
+        <div class="row justify-content-center my-3">
+          <h2>Success</h2>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" id="okayButton" data-dismiss="modal">Okay</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- item modal -->
 <div class="modal fade" id="itemModal" tabindex="-1" role="dialog" aria-labelledby="itemModal" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -87,6 +114,9 @@
 {% block javascript %}
   <script>
     var items = [];
+    $("#okayButton").on('click', function(event){
+      window.location.replace("/bantuan/saya");
+    })
     $('#tambah_item').on('click', function(event) {
       $("#item_form").trigger('reset');
     });
@@ -117,7 +147,8 @@
           dataType: 'json',
           contentType: 'application/json',
           success: function(data){
-            alert("success");
+            console.log("success")
+            $("#successModal").modal('show')
           },
           data: JSON.stringify(items)
         })

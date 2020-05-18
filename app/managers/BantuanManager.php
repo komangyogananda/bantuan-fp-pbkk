@@ -20,7 +20,10 @@ class BantuanManager extends BaseManager {
 
   public function myBantuan($id){
     $bantuans = Bantuan::find([
-      "id"=>$id
+      'conditions' => 'user_id = ?1',
+      'bind' => [
+        1 => $id
+      ]
     ]);
     return $bantuans;
   }

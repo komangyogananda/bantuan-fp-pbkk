@@ -10,7 +10,7 @@ use Phalcon\Mvc\View\Engine\Volt as VoltEngine;
 use Phalcon\Session\Adapter\Stream as SessionAdapter;
 use Phalcon\Session\Manager as SessionManager;
 use Phalcon\Url as UrlResolver;
-
+use Phalcon\Mvc\Dispatcher;
 /**
  * Shared configuration service
  */
@@ -144,4 +144,9 @@ $di->setShared('bantuan_manager', function (){
 
 $di->setShared('item_manager', function (){
   return new ItemManager();
+});
+
+$di->set('dispatcher', function () {
+  $dispatcher = new Dispatcher();
+  return $dispatcher;
 });

@@ -50,10 +50,20 @@ class BantuanController extends ControllerBase {
             print_r($item->getId());
           }
           $this->db->commit();
-          die();
+          $this->view->disable();
+          $response = new \Phalcon\Http\Response();
+          $response->setJsonContent([
+            'status' => 'success'
+          ]);
+          return $response;
         }catch (\Exception $e){
           echo $e->getMessage();
           $this->db->rollback();
+          $response = new \Phalcon\Http\Response();
+          $response->setJsonContent([
+            'status' => $e->getMessage()
+          ]);
+          return $response;
         }
       }
     }else{

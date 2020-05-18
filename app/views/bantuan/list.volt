@@ -20,7 +20,7 @@
                 <label class="input-group-text" for="category">Kategori</label>
               </div>
               <select class="custom-select" id="category">
-                <option value="-1">Semua</option>
+                <option selected value="-1">Semua</option>
                 {% for category in categories %}
                   <option value={{ category.getId() }}>{{ category.getNama() }}</option>
                 {% endfor %}
@@ -96,6 +96,7 @@
         }
       },
       searching: false,
+      lengthMenu: [5, 10],
       columns: [
         {"data": "user"},
         {"data": "createdAt"},
