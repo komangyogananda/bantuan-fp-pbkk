@@ -99,10 +99,10 @@ $di->set('flash', function () {
     $flash = new Flash($escaper);
     $flash->setImplicitFlush(false);
     $flash->setCssClasses([
-        'error'   => 'alert alert-danger',
-        'success' => 'alert alert-success',
-        'notice'  => 'alert alert-info',
-        'warning' => 'alert alert-warning'
+        'error'   => 'alert alert-danger my-3',
+        'success' => 'alert alert-success my-3',
+        'notice'  => 'alert alert-info my-3',
+        'warning' => 'alert alert-warning my-3'
     ]);
 
     return $flash;

@@ -23,8 +23,9 @@
 
 <body class="bg-gradient-primary">
 
-  <div class="container-fluid">
+  <div class="container">
 
+    {{ flash.output() }}
     <!-- Outer Row -->
     <div class="row justify-content-center">
 

@@ -8,7 +8,6 @@ class UserController extends ControllerBase
 
   public function loginAction(){
     if ($this->request->isPost()){
-      $this->view->disable();
       $user_manager = $this->di->getShared("user_manager");
       $security = new Security();
       $username = $this->request->getPost("username");
@@ -16,15 +15,17 @@ class UserController extends ControllerBase
       try {
         $user = $user_manager->find($username);
         if (!$user){
-          throw new Exception("User not found", 404);
+          throw new Exception("Username tidak ada", 404);
         }
         if ($security->checkHash($password, $user->getPassword())){
           $session = $this->di->getShared("session");
           $session->set("user", $user);
           $this->response->redirect('/');
+        }else{
+          throw new Exception("Password salah", 404);
         }
       } catch (\Exception $e){
-        echo $e->getMessage();
+        $this->flash->error($e->getMessage());
       }
     }
   }
@@ -44,7 +45,7 @@ class UserController extends ControllerBase
         $user_manager->create($params);
         $this->response->redirect('user/login');
       } catch (\Exception $e){
-        echo $e->getMessage();
+        $this->flash->error("Terjadi kesalahan.");
       }
     }
   }

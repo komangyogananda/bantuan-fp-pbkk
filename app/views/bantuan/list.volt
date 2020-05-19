@@ -77,9 +77,9 @@
 
     $("#category").on("change", function (){
       if (this.value == -1){
-        window.location.href = "/bantuan/saya"
+        window.location.href = "/"
       }else{
-        window.location.href = "/bantuan/saya?category=" + this.value;
+        window.location.href = "/?category=" + this.value;
       }
     })
 
