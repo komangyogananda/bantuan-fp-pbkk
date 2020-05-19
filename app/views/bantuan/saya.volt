@@ -20,9 +20,17 @@
                 <label class="input-group-text" for="category">Kategori</label>
               </div>
               <select class="custom-select" id="category">
-                <option value="-1">Semua</option>
+                <option
+                 {% if selected_category == -1 %}
+                    selected
+                 {% endif %}
+                 value="-1">Semua</option>
                 {% for category in categories %}
-                  <option value={{ category.getId() }}>{{ category.getNama() }}</option>
+                  <option 
+                    {% if selected_category == category.getId() %}
+                      selected
+                    {% endif %}
+                  value={{ category.getId() }}>{{ category.getNama() }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -59,6 +67,14 @@
 <script>
   $(document).ready(function(){
     
+    $("#category").on("change", function (){
+      if (this.value == 0){
+        window.location.href = "/bantuan/saya"
+      }else{
+        window.location.href = "/bantuan/saya?category=" + this.value;
+      }
+    })
+
     function format(d){
       var html = '<table class="table table-borderless">'+
       '<thead>'+
@@ -85,9 +101,11 @@
       return html;
     }
 
+    var url = $("#category").val() == -1 ? '/bantuan/saya' : window.location.href 
+
     var dataTable = $("#dataTable").DataTable({
       "ajax": {
-        "url": '/bantuan/saya',
+        "url": url,
         "dataSrc": function(json){
           console.log(json);
           return json

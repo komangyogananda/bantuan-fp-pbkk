@@ -10,7 +10,6 @@ class ControllerBase extends Controller
   public function beforeExecuteRoute(Dispatcher $dispatcher){
     $session = $this->di->getShared("session");
     $user = $session->get('user');
-    print_r($user);
     if (!$user && $dispatcher->getControllerName() != "user"){
       $this->response->redirect('user/login');
       return false;

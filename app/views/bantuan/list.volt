@@ -20,9 +20,17 @@
                 <label class="input-group-text" for="category">Kategori</label>
               </div>
               <select class="custom-select" id="category">
-                <option selected value="-1">Semua</option>
+                <option
+                 {% if selected_category == -1 %}
+                    selected
+                 {% endif %}
+                 value="-1">Semua</option>
                 {% for category in categories %}
-                  <option value={{ category.getId() }}>{{ category.getNama() }}</option>
+                  <option 
+                    {% if selected_category == category.getId() %}
+                      selected
+                    {% endif %}
+                  value={{ category.getId() }}>{{ category.getNama() }}</option>
                 {% endfor %}
               </select>
             </div>
@@ -60,7 +68,21 @@
 <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
 <script>
   $(document).ready(function(){
-    
+    var url
+    if ($("#category").val() == -1){
+      url = '/bantuan/list'
+    }else{
+      url = '/bantuan/list?category=' + $("#category").val()
+    }
+
+    $("#category").on("change", function (){
+      if (this.value == -1){
+        window.location.href = "/bantuan/saya"
+      }else{
+        window.location.href = "/bantuan/saya?category=" + this.value;
+      }
+    })
+
     function format(d){
       var html = '<table class="table table-borderless">'+
       '<thead>'+
@@ -89,7 +111,7 @@
 
     var dataTable = $("#dataTable").DataTable({
       "ajax": {
-        "url": '/bantuan/list',
+        "url": url,
         "dataSrc": function(json){
           console.log(json);
           return json

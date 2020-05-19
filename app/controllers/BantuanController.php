@@ -1,8 +1,9 @@
 <?php
 
 class BantuanController extends ControllerBase {
-  public function sayaAction(){
+  public function sayaAction($params = -1){
     $user = $this->di->getShared("session")->get("user");
+    $selected_category = $this->request->getQuery('category');
     if ($this->request->isAjax()){
       $bantuan_manager = $this->di->getShared("bantuan_manager");
       $bantuans = $bantuan_manager->myBantuan($user->getId());
@@ -19,10 +20,17 @@ class BantuanController extends ControllerBase {
             "category" => $item->category->nama,
             "jumlah" => $item->jumlah
           );
-          array_push($row["items"], $dataItem);
+          if ($selected_category == null){
+            array_push($row["items"], $dataItem);
+          }else if ($item->category->getId() == $selected_category){
+            array_push($row["items"], $dataItem);
+          }
         }
-        array_push($dataTable, $row);
+        if (count($row["items"]) != 0){
+          array_push($dataTable, $row);
+        }
       }
+      
       $this->view->disable();
       $response = new \Phalcon\Http\Response();
       $response->setHeader("Access-Control-Allow-Origin", "*");
@@ -32,6 +40,10 @@ class BantuanController extends ControllerBase {
     }else{
       $this->view->user = $user;
       $this->view->categories = $this->di->getShared("category_manager")->all();
+      $this->view->selected_category = $selected_category;
+      if ($selected_category == null){
+        $this->view->selected_category = -1;
+      }
     }
   }
 
@@ -73,6 +85,7 @@ class BantuanController extends ControllerBase {
   }
 
   public function listAction($category = null){
+    $selected_category = $this->request->getQuery('category');
     if ($this->request->isAjax()){
       $this->view->disable();
       $bantuan_manager = $this->di->getShared("bantuan_manager");
@@ -91,9 +104,15 @@ class BantuanController extends ControllerBase {
             "category" => $item->category->nama,
             "jumlah" => $item->jumlah
           );
-          array_push($row["items"], $dataItem);
+          if ($selected_category == null){
+            array_push($row["items"], $dataItem);
+          }else if ($item->category->getId() == $selected_category){
+            array_push($row["items"], $dataItem);
+          }
         }
-        array_push($dataTable, $row);
+        if (count($row["items"]) != 0){
+          array_push($dataTable, $row);
+        }
       }
       $response = new \Phalcon\Http\Response();
       $response->setHeader("Access-Control-Allow-Origin", "*");
@@ -104,6 +123,10 @@ class BantuanController extends ControllerBase {
     }else{
       $this->view->user = $this->di->getShared("session")->get("user");
       $this->view->categories = $this->di->getShared("category_manager")->all();
+      $this->view->selected_category = $selected_category;
+      if ($selected_category == null){
+        $this->view->selected_category = -1;
+      }
     }
   }
 }
